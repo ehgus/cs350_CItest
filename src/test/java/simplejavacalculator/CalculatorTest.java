@@ -62,10 +62,34 @@ public class CalculatorTest
         // abs(5) = 5
         assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.abs, 5.0), 5, 0);
 
+        // sin(0) = 0
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.sin, 0.0), 0, 0);
+
+        // cos(0) = 1
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.cos, 0.0), 1, 0);
+
+        // tan(0) = 0
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.tan, 0.0), 0, 0);
+
+        // tan(90) = NAN
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.tan, 90.0), Double.NaN, 0);
+
+        // tan(45) = 1
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.tan, 45.0), Math.tan(45), 0);
+
+        // log10(100) = 2
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.log, 100.0), 2, 0);
+
+        // rate(50) = 0.5
+        assertEquals(calc.calculateMono(Calculator.MonoOperatorModes.rate, 50.0), 0.5, 0);
+
         // 15 / 0 = infinity
         calc.calculateBi(Calculator.BiOperatorModes.divide, 15.0);
         assertEquals(calc.calculateEqual(0.0), Double.POSITIVE_INFINITY, 0);
         //assertEquals(calc.calculateEqual(0.0), java.lang.Double.NaN, 0);
+
+        // RESET -> NAN
+        assertEquals(calc.reset(), Double.NaN, 0);
     }
 
 }
