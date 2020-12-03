@@ -6,12 +6,27 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.PointerInfo;
+import java.awt.MouseInfo;
+import java.awt.event.InputEvent;
+
 /**
  * Unit test for simple App.
  */
 public class CalculatorTest 
 {
     private Calculator calc;
+    private UI ui;
+
+    public static void click(int x, int y) throws AWTException{
+        Robot bot = new Robot();
+        bot.setAutoDelay(1);
+        bot.mouseMove(x, y);
+        bot.mousePress(InputEvent.BUTTON1_MASK);
+        bot.mouseRelease(InputEvent.BUTTON1_MASK);
+    }
 
     @Before
     public void setup() {
@@ -139,28 +154,42 @@ public class CalculatorTest
         assertEquals(calc.reset(), Double.NaN, 0);
     }
 
-    /*
     @Test
     public void ui() {
         String[] args = null;
         SimpleJavaCalculator.main(args);
 
-        Double r1 = 0.0;
-
         try {
-            UI uiCal = new UI();
-            uiCal.init();
-            uiCal.writer(Double.NaN);
-            uiCal.writer(30.0);
-            r1 = uiCal.reader();
-            // after writing NaN, reader() fails.
+            ui = new UI();
+            ui.init();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        assertEquals(r1, 30, 0);
+        /*
+        while(true) {
+            PointerInfo pt = MouseInfo.getPointerInfo();
+            pt = MouseInfo.getPointerInfo();
+            System.out.println(pt.getLocation()); // x,y
+        }
+        */
+
+        try {
+            click(1065, 500);
+            click(950, 400);
+            click(1015, 400);
+            click(900, 400);
+            click(1015, 500);
+            Thread.sleep(10);
+            assertEquals(ui.reader(), 5, 0);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
-    */
+
+
 
 }
