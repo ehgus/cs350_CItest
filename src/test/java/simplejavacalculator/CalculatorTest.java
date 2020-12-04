@@ -175,4 +175,28 @@ public class CalculatorTest
             System.out.println(e.getMessage());
         }
     }
+
+    @Test //just to try
+    public void readerTest(){
+        try {
+            ui = new UI();
+            ui.init();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        ui.writer(5.0);
+        assertEquals(ui.reader(),5.0,0);
+    }
+
+    @Test
+    public void writerTest() {
+        try {
+            ui = new UI();
+            ui.init();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        ui.writer(2.0);
+        assertEquals(ui.reader(),2.0,0);
+    }
 }
