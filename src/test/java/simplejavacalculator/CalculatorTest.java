@@ -164,33 +164,15 @@ public class CalculatorTest
         try {
             ui = new UI();
             ui.init();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        try {
             click(1065, 500);
             click(950, 400);
             click(1015, 400);
             click(900, 400);
             click(1015, 500);
+            assertEquals(ui.reader(), 5, 0);
         }
-        catch(Exception e) {
+        catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        assertEquals(ui.reader(), 5, 0);
-
-        try {
-            click(1065, 500);
-            click(950, 400);
-            click(1065, 400);
-            click(900, 400);
-            click(1015, 500);
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
-        assertEquals(ui.reader(), 1, 0);
     }
 }
