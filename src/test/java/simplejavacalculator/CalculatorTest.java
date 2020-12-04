@@ -158,7 +158,7 @@ public class CalculatorTest
         // RESET -> NAN
         assertEquals(calc.reset(), Double.NaN, 0);
     }
-    
+
     @Test
     public void test_ui() {
         try {
@@ -176,27 +176,9 @@ public class CalculatorTest
         }
     }
 
-    @Test //just to try
-    public void readerTest(){
-        try {
-            ui = new UI();
-            ui.init();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        ui.writer(5.0);
-        assertEquals(ui.reader(),5.0,0);
-    }
-
     @Test
-    public void writerTest() {
-        try {
-            ui = new UI();
-            ui.init();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        ui.writer(2.0);
-        assertEquals(ui.reader(),2.0,0);
+    public void simpleTest() {
+        String[] args = null;
+        SimpleJavaCalculator.main(args);
     }
 }
