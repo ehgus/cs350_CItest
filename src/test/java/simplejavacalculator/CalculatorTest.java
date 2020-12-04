@@ -18,19 +18,10 @@ import java.awt.event.InputEvent;
 public class CalculatorTest 
 {
     private Calculator calc;
-    private UI ui;
 
     @Before
     public void setup() {
         calc = new Calculator();
-
-        try {
-            ui = new UI();
-            ui.init();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     @Test
