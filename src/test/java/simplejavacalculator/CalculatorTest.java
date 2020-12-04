@@ -18,6 +18,21 @@ import java.awt.event.InputEvent;
 public class CalculatorTest 
 {
     private Calculator calc;
+    private UI ui;
+
+    public static void click(int x, int y) throws AWTException{
+        Robot bot = new Robot();
+        bot.setAutoDelay(1);
+        bot.mouseMove(x, y);
+        bot.mousePress(InputEvent.BUTTON1_MASK);
+        bot.mouseRelease(InputEvent.BUTTON1_MASK);
+        try {
+            Thread.sleep(150);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Before
     public void setup() {
@@ -142,5 +157,40 @@ public class CalculatorTest
     public void reset() {
         // RESET -> NAN
         assertEquals(calc.reset(), Double.NaN, 0);
+    }
+    
+    @Test
+    public void test_ui() {
+        try {
+            ui = new UI();
+            ui.init();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            click(1065, 500);
+            click(950, 400);
+            click(1015, 400);
+            click(900, 400);
+            click(1015, 500);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        assertEquals(ui.reader(), 5, 0);
+
+        try {
+            click(1065, 500);
+            click(950, 400);
+            click(1065, 400);
+            click(900, 400);
+            click(1015, 500);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        assertEquals(ui.reader(), 1, 0);
     }
 }
