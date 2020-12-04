@@ -175,10 +175,11 @@ public class CalculatorTest
             System.out.println(e.getMessage());
         }
     }
-
+    /*
     @Test
     public void simpleTest() {
         String[] args = null;
         SimpleJavaCalculator.main(args);
     }
+    */
 }
