@@ -38,9 +38,24 @@ public class UI implements ActionListener {
    private final JPanel panelSub8;
    
    private final JTextArea text;
-   private final JButton but[], butAdd, butMinus, butMultiply, butDivide,
-      butEqual, butCancel, butSquareRoot, butSquare, butOneDevidedBy,
-      butCos, butSin, butTan, butxpowerofy, butlog, butrate, butabs, butBinary;
+   private final JButton but[];
+   private final JButton butAdd;
+   private final JButton butMinus;
+   private final JButton butMultiply;
+   private final JButton butDivide;
+   private final JButton butEqual;
+   private final JButton butCancel;
+   private final JButton butSquareRoot;
+   private final JButton butSquare;
+   private final JButton butOneDividedBy;
+   private final JButton butCos;
+   private final JButton butSin;
+   private final JButton butTan;
+   private final JButton butxpowerofy;
+   private final JButton butlog;
+   private final JButton butrate;
+   private final JButton butabs;
+   private final JButton butBinary;
    private final Calculator calc;
    
    private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
@@ -82,7 +97,7 @@ public class UI implements ActionListener {
       butEqual = new JButton("=");      
       butSquareRoot = new JButton("sqrt");      
       butSquare = new JButton("x*x");      
-      butOneDevidedBy = new JButton("1/x");      
+      butOneDividedBy = new JButton("1/x");      
       butCos = new JButton("Cos");      
       butSin = new JButton("Sin");      
       butTan = new JButton("Tan");      
@@ -118,7 +133,7 @@ public class UI implements ActionListener {
       butEqual.setFont(font);
       butSquareRoot.setFont(font);
       butSquare.setFont(font);
-      butOneDevidedBy.setFont(font);
+      butOneDividedBy.setFont(font);
       butCos.setFont(font);
       butSin.setFont(font);
       butTan.setFont(font);
@@ -163,7 +178,7 @@ public class UI implements ActionListener {
       
       panelSub6.add(butSquare);
       panelSub6.add(butSquareRoot);
-      panelSub6.add(butOneDevidedBy);
+      panelSub6.add(butOneDividedBy);
       panelSub6.add(butxpowerofy);
       panel.add(panelSub6);
       
@@ -187,7 +202,7 @@ public class UI implements ActionListener {
       butDivide.addActionListener(this);
       butSquare.addActionListener(this);
       butSquareRoot.addActionListener(this);
-      butOneDevidedBy.addActionListener(this);
+      butOneDividedBy.addActionListener(this);
       butCos.addActionListener(this);
       butSin.addActionListener(this);
       butTan.addActionListener(this);
@@ -246,7 +261,7 @@ public class UI implements ActionListener {
                                    reader()));
       }
       
-      if (source == butOneDevidedBy) {
+      if (source == butOneDividedBy) {
          writer(calc.calculateMono(
                                    Calculator.MonoOperatorModes.ONEDIVIDEDBY, reader()));
       }
