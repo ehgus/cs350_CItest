@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 
 public class SimpleJavaCalculator {
-   private final static Logger LOG = Logger.getGlobal();
+   private static final Logger LOG = Logger.getGlobal();
    public static void main(String[] args) {
       try {
          UI uiCal = new UI();

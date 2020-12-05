@@ -66,7 +66,7 @@ public class UI implements ActionListener {
    private final Font font;
    private final Font textFont;
 
-   private final static Logger LOG = Logger.getGlobal();
+   private static final Logger LOG = Logger.getGlobal();
 
    public UI() throws IOException {
       frame = new JFrame("Calculator PH");
