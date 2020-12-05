@@ -7,16 +7,18 @@
  */
 
 package simplejavacalculator;
+import java.util.logging.Logger;
+
 
 public class SimpleJavaCalculator {
-   
+   private final static Logger LOG = Logger.getGlobal();
    public static void main(String[] args) {
       try {
          UI uiCal = new UI();
          uiCal.init();
       }
       catch (Exception e) {
-         System.out.println(e.getMessage());   
+         LOG.info(e.getMessage());   
       }
       
    }
