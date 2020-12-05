@@ -229,68 +229,21 @@ public class UI implements ActionListener {
          }
       }
       
-      if (source == butAdd) {
-         writer(calc.calculateBi(Calculator.BiOperatorModes.ADD, reader()));
-      }
+      condcalbi(source, butAdd, Calculator.BiOperatorModes.ADD);
+      condcalbi(source, butMinus, Calculator.BiOperatorModes.MINUS);
+      condcalbi(source, butMultiply, Calculator.BiOperatorModes.MULTIPLY);
+      condcalbi(source, butDivide, Calculator.BiOperatorModes.DIVIDE);
+      condcalbi(source, butxpowerofy, Calculator.BiOperatorModes.XPOWEROFY);
       
-      if (source == butMinus) {
-         writer(calc.calculateBi(Calculator.BiOperatorModes.MINUS, reader()));
-      }
-      
-      if (source == butMultiply) {
-         writer(calc.calculateBi(Calculator.BiOperatorModes.MULTIPLY,
-                                 reader()));
-      }
-      
-      if (source == butDivide) {
-         writer(calc
-                   .calculateBi(Calculator.BiOperatorModes.DIVIDE, reader()));
-      }
-      if (source == butxpowerofy) {
-         writer(calc
-                   .calculateBi(Calculator.BiOperatorModes.XPOWEROFY, reader()));
-      }
-      
-      if (source == butSquare) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.SQUARE,
-                                   reader()));
-      }
-      
-      if (source == butSquareRoot) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.SQUAREROOT,
-                                   reader()));
-      }
-      
-      if (source == butOneDividedBy) {
-         writer(calc.calculateMono(
-                                   Calculator.MonoOperatorModes.ONEDIVIDEDBY, reader()));
-      }
-      
-      if (source == butCos) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.COS,
-                                   reader()));
-      }
-      
-      if (source == butSin) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.SIN,
-                                   reader()));
-      }
-      
-      if (source == butTan) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.TAN,
-                                   reader()));
-      }
-      if (source == butlog) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.LOG,
-                                   reader()));
-      }
-      if (source == butrate) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.RATE,
-                                   reader()));
-      }
-      if(source == butabs){
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.ABS, reader()));
-      }
+      condcalbi(source, butSquare, Calculator.MonoOperatorModes.SQUARE);
+      condcalbi(source, butSquareRoot, Calculator.MonoOperatorModes.SQUAREROOT);
+      condcalbi(source, butOneDividedBy, Calculator.MonoOperatorModes.ONEDIVIDEDBY);
+      condcalbi(source, butCos, Calculator.MonoOperatorModes.COS);
+      condcalbi(source, butSin, Calculator.MonoOperatorModes.SIN);
+      condcalbi(source, butTan, Calculator.MonoOperatorModes.TAN);
+      condcalbi(source, butlog, Calculator.MonoOperatorModes.LOG);
+      condcalbi(source, butrate, Calculator.MonoOperatorModes.RATE);
+      condcalbi(source, butabs, Calculator.MonoOperatorModes.ABS);
       
       if (source == butEqual) {
          writer(calc.calculateEqual(reader()));
@@ -305,6 +258,18 @@ public class UI implements ActionListener {
       }
       
       text.selectAll();
+   }
+
+   private void condcalbi(final Object source,JButton cond,Calculator.BiOperatorModes bimode){
+      if (source == cond){
+         writer(calc.calculateBi(bimode, reader()));
+      }
+   }
+
+   private void condcalbi(final Object source,JButton cond,Calculator.MonoOperatorModes monomode){
+      if (source == cond){
+         writer(calc.calculateMono(monomode, reader()));
+      }
    }
    
    private void parsetoBinary() {
