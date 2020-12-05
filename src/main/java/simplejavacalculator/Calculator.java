@@ -31,11 +31,7 @@ public class Calculator {
             return num2;
         }
         if (mode == BiOperatorModes.ADD) {
-            if (num2 != 0) {
-                return num1 + num2;
-            }
-
-            return num1;
+            return num1 + num2;
         }
         if (mode == BiOperatorModes.MINUS) {
             return num1 - num2;
@@ -51,7 +47,7 @@ public class Calculator {
         }
 
         // never reach
-        throw new Error();
+        throw new  UnsupportedOperationException("This should never be reached");
     }
 
     public Double calculateBi(BiOperatorModes newMode, Double num) {
@@ -117,7 +113,7 @@ public class Calculator {
         }
 
         // never reach
-        throw new Error();
+        throw new  UnsupportedOperationException("This should never be reached");
     }
 
 }
