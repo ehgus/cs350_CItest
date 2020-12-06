@@ -11,6 +11,7 @@ import java.awt.Robot;
 //import java.awt.PointerInfo;
 //import java.awt.MouseInfo;
 import java.awt.event.InputEvent;
+import java.io.IOException;
 
 //import javax.swing.text.AbstractWriter;
 
@@ -24,6 +25,10 @@ public class CalculatorTest
 
     private void click_clear() throws AWTException{
         click(1065, 500);
+    }
+
+    private void click_equal() throws AWTException{
+        click(1015, 500);
     }
 
     private void click_num(int num) throws AWTException{
@@ -194,22 +199,31 @@ public class CalculatorTest
         // RESET -> NAN
         assertEquals(calc.reset(), Double.NaN, 0);
     }
-
-    @Test
-    public void test_ui() {
-        try {
-            ui = new UI();
-            ui.init();
-            click_clear();
-            click_num(3);
-            click_op(Calculator.BiOperatorModes.ADD);
-            click_num(2);
-            click(1015, 500);
-            assertEquals(ui.reader(), 5, 0);
+    @Before
+    public void ui_init() throws IOException{
+        ui = new UI();
+        ui.init();
+    }
+    @Test(timeout = 6000)
+    public void gui_simple_test() throws Exception {
+        Double rst;
+        click_clear();
+        click_num(3);
+        click_op(Calculator.BiOperatorModes.ADD);
+        click_num(2);
+        click_equal();
+        while (true) {
+            try {
+                rst = ui.reader();
+                break;
+            }
+            catch (NullPointerException e){
+                Thread.sleep(10);
+                continue;
+            }
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        
+        assertEquals(rst, (Double)5.0);
     }
     /*
     @Test
