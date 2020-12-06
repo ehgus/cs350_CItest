@@ -11,7 +11,6 @@ import java.awt.Robot;
 //import java.awt.PointerInfo;
 //import java.awt.MouseInfo;
 import java.awt.event.InputEvent;
-import java.io.IOException;
 
 //import javax.swing.text.AbstractWriter;
 
@@ -78,13 +77,13 @@ public class CalculatorTest
     @Before
     public void setup() {
         calc = new Calculator();
-        try{
-            ui = new UI();
-            ui.init();
-        }
-        catch (Exception e){
-            assertTrue(false);
-        }
+        //try{
+        //    ui = new UI();
+        //    ui.init();
+        //}
+        //catch (Exception e){
+        //    assertTrue(false);
+        //}
     }
 
     @Test
@@ -206,10 +205,9 @@ public class CalculatorTest
         // RESET -> NAN
         assertEquals(calc.reset(), Double.NaN, 0);
     }
-    
+    /*
     @Test(timeout = 6000)
     public void gui_simple_test() throws Exception {
-        Double rst;
         click_clear();
         click_num(3);
         click_op(Calculator.BiOperatorModes.ADD);
@@ -217,7 +215,7 @@ public class CalculatorTest
         click_equal();
         while (true) {
             try {
-                rst = ui.reader();
+                assertEquals(ui.reader(),(Double)5.0);
                 break;
             }
             catch (NullPointerException e){
@@ -225,9 +223,8 @@ public class CalculatorTest
                 continue;
             }
         }
-        
-        assertEquals(rst, (Double)5.0);
     }
+    */
     /*
     @Test
     public void simpleTest() {
