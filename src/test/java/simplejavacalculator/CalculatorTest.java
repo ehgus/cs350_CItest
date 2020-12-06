@@ -78,6 +78,13 @@ public class CalculatorTest
     @Before
     public void setup() {
         calc = new Calculator();
+        try{
+            ui = new UI();
+            ui.init();
+        }
+        catch (Exception e){
+            assertTrue(false);
+        }
     }
 
     @Test
@@ -199,11 +206,7 @@ public class CalculatorTest
         // RESET -> NAN
         assertEquals(calc.reset(), Double.NaN, 0);
     }
-    @Before
-    public void ui_init() throws IOException{
-        ui = new UI();
-        ui.init();
-    }
+    
     @Test(timeout = 6000)
     public void gui_simple_test() throws Exception {
         Double rst;
