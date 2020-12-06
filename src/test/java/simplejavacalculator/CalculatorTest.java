@@ -8,9 +8,11 @@ import org.junit.Test;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.PointerInfo;
-import java.awt.MouseInfo;
+//import java.awt.PointerInfo;
+//import java.awt.MouseInfo;
 import java.awt.event.InputEvent;
+
+//import javax.swing.text.AbstractWriter;
 
 /**
  * Unit test for simple App.
@@ -20,12 +22,46 @@ public class CalculatorTest
     private Calculator calc;
     private UI ui;
 
-    public static void click(int x, int y) throws AWTException{
+    private void click_clear() throws AWTException{
+        click(1065, 500);
+    }
+
+    private void click_num(int num) throws AWTException{
+        if (num<0) {
+            System.err.println("This negative input is not developed yet");
+        }else {
+            do {
+                int remainder =num%10;
+                if (remainder==0){
+                    click(850,550);
+                }else{
+                    click(850+((remainder-1)%3)*50,400+((remainder-1)/3)*50);
+                }
+                num/=10;
+            }while (num!=0);
+        }
+    }
+
+    private void click_op(Calculator.BiOperatorModes bimode) throws AWTException{
+        if (bimode == Calculator.BiOperatorModes.ADD){
+            click(1015, 400);
+        }else if (bimode == Calculator.BiOperatorModes.MINUS){
+            click(1065, 400);
+        }else if (bimode == Calculator.BiOperatorModes.MULTIPLY){
+            click(1015, 450);
+        }else if (bimode == Calculator.BiOperatorModes.DIVIDE){
+            click(1065, 450);
+        }else if (bimode == Calculator.BiOperatorModes.XPOWEROFY){
+            click(1065, 600);
+        }
+    }
+
+    private static void click(int x, int y) throws AWTException{
         Robot bot = new Robot();
         bot.setAutoDelay(1);
         bot.mouseMove(x, y);
-        bot.mousePress(InputEvent.BUTTON1_MASK);
-        bot.mouseRelease(InputEvent.BUTTON1_MASK);
+        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         try {
             Thread.sleep(150);
         }
@@ -164,10 +200,10 @@ public class CalculatorTest
         try {
             ui = new UI();
             ui.init();
-            click(1065, 500);
-            click(950, 400);
-            click(1015, 400);
-            click(900, 400);
+            click_clear();
+            click_num(3);
+            click_op(Calculator.BiOperatorModes.ADD);
+            click_num(2);
             click(1015, 500);
             assertEquals(ui.reader(), 5, 0);
         }
